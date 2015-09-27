@@ -87,7 +87,7 @@ public class SuperTable{
             try {
                 hbaseAdmin.createTable(createTableDescriptor());
             } catch (IOException e) {
-                handleCriticalError("Could not create table descriptor", e);
+                throw new RuntimeException("Could not create table descriptor", e);
             }
         }
     }
@@ -96,7 +96,7 @@ public class SuperTable{
         try {
             return !hbaseAdmin.tableExists(tableName);
         } catch (IOException e) {
-            handleCriticalError("Error when checking for table", e);
+            throw new RuntimeException("Error when checking for table", e);
         }
     }
 
@@ -116,7 +116,7 @@ public class SuperTable{
         try {
             return new HTable(mp4Config, tableName);
         } catch (IOException e) {
-            handleCriticalError("Could not access or create table " + tableName, e);
+            throw new RuntimeException("Could not access or create table " + tableName, e);
         }
     }
 
