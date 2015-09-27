@@ -62,7 +62,7 @@ public class SuperTable{
         ResultScanner results = table.getScanner(scanner);
 
         // Read values from scan result
-        for(Result row = results.next(); null != row; results.next()) {
+        for(Result row = results.next(); null != row; row = results.next()) {
             // Print scan result
             printRow(row);
         }
