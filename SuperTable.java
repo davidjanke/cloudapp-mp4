@@ -16,6 +16,10 @@ public class SuperTable{
     public static final String POWERSTABLE_NAME = "powers";
     public static final String COLUMNFAMILIY_PERSONAL = "personal";
     public static final String COLUMNFAMILIY_PROFESSIONAL = "professional";
+    public static final String COLNAME_HERO = "hero";
+    public static final String COLNAME_POWER = "power";
+    public static final String COLNAME_NAME = "name";
+    public static final String COLNAME_XP = "xp";
 
     private static Configuration mp4Config = HBaseConfiguration.create();
 
@@ -54,7 +58,7 @@ public class SuperTable{
         Scan scanner = new Scan();
 
         // Scan the required columns
-        scanner.addColumn(Bytes.toBytes(COLUMNFAMILIY_PERSONAL), Bytes.toBytes("hero"));
+        scanner.addColumn(Bytes.toBytes(COLUMNFAMILIY_PERSONAL), Bytes.toBytes(COLNAME_HERO));
 
         // Get the scan result
         ResultScanner results = table.getScanner(scanner);
@@ -78,8 +82,10 @@ public class SuperTable{
 
     public static Put rowOf(String rowId, String hero, String power, String name, String xp) {
         Put put = new Put(Bytes.toBytes(rowId));
-        put.add(Bytes.toBytes(COLUMNFAMILIY_PERSONAL), Bytes.toBytes(hero), Bytes.toBytes(power));
-        put.add(Bytes.toBytes(COLUMNFAMILIY_PROFESSIONAL), Bytes.toBytes(name), Bytes.toBytes(xp));
+        put.add(Bytes.toBytes(COLUMNFAMILIY_PERSONAL), Bytes.toBytes(COLNAME_HERO), Bytes.toBytes(hero));
+        put.add(Bytes.toBytes(COLUMNFAMILIY_PERSONAL), Bytes.toBytes(COLNAME_POWER), Bytes.toBytes(power));
+        put.add(Bytes.toBytes(COLUMNFAMILIY_PROFESSIONAL), Bytes.toBytes(COLNAME_NAME), Bytes.toBytes(name));
+        put.add(Bytes.toBytes(COLUMNFAMILIY_PROFESSIONAL), Bytes.toBytes(COLNAME_XP), Bytes.toBytes(xp));
         return put;
     }
 
