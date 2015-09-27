@@ -80,6 +80,7 @@ public class SuperTable{
         Put put = new Put(Bytes.toBytes(rowId));
         put.add(Bytes.toBytes(COLUMNFAMILIY_PERSONAL), Bytes.toBytes(hero), Bytes.toBytes(power));
         put.add(Bytes.toBytes(COLUMNFAMILIY_PROFESSIONAL), Bytes.toBytes(name), Bytes.toBytes(xp));
+        return put;
     }
 
     private static void instantiateTableDescriptor() {
