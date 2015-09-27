@@ -51,8 +51,6 @@ public class SuperTable{
         table.put(rowOf("row2", "batman", "money", "bruce", "50"));
         table.put(rowOf("row3", "wolverine", "healing", "logan", "75"));
 
-        // Close table
-        table.close();
 
         // Instantiate the Scan class
         Scan scanner = new Scan();
@@ -73,6 +71,8 @@ public class SuperTable{
         results.close();
 
         // Htable closer
+        // Close table
+        table.close();
 
     }
 
